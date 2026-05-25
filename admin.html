@@ -330,8 +330,8 @@
         inside: { name: "Space & Furniture", target: "https://inside.akihaus.co.uk" },
         outside: { name: "Garden Essentials & Yard Landscape", target: "https://outside.akihaus.co.uk" },
         companions: { name: "Seamless Pet Living", target: "https://companions.akihaus.co.uk" },
-        rituals: { name: "Washroom Aesthetics & Self-Care", target: "https://rituals.akihaus.co.uk" },
-        intelligent: { name: "Intelligent Personal Care Tech", target: "https://intelligent.akihaus.co.uk" }
+        rituals: { name: "Rituals & Wellness", target: "https://vpsmile.com" },
+        intelligent: { name: "Intelligent Tech", target: "https://vpsmile.com/collections/all" }
       }
     };
 
@@ -416,17 +416,15 @@
       document.getElementById('pillar-companions-sub').value = current.routes?.companions?.subtext || 'Minimalist pet care items crafted to integrate beautifully with high-end interiors.';
       document.getElementById('pillar-companions-desc').value = current.routes?.companions?.desc || 'Crafting luxury pet supplies designed to disappear into the home. Each accessory integrates seamlessly into the warm, comforting Base Beige autumn color palette, eliminating visual noise while providing a cozy sanctuary of absolute comfort for your companions.';
 
-      // Rituals
-      document.getElementById('pillar-rituals-target').value = current.routes?.rituals?.target || '';
-      document.getElementById('pillar-rituals-title').value = current.routes?.rituals?.name || 'Washroom Aesthetics & Self-Care';
+      document.getElementById('pillar-rituals-target').value = current.routes?.rituals?.target || 'https://vpsmile.com';
+      document.getElementById('pillar-rituals-title').value = current.routes?.rituals?.name || 'Rituals & Wellness';
       document.getElementById('pillar-rituals-sub').value = current.routes?.rituals?.subtext || 'Mindful self-care products designed to cultivate peace in your personal space.';
-      document.getElementById('pillar-rituals-desc').value = current.routes?.rituals?.desc || 'Elevating daily wellness into moments of quiet indulgence. Our focus centers on clean beauty, dental care wellness, and restorative morning and evening routines, curated to deliver premium self-care without sub-brand clutter.';
+      document.getElementById('pillar-rituals-desc').value = current.routes?.rituals?.desc || 'A pure aesthetic for your morning and evening routines, transforming the washroom into a restorative sanctuary. Aki Haus curates clean beauty essentials and advanced oral wellness products from vpsmile.com, stripping away commercial noise to let your daily self-care return to a state of calm, organic art.';
 
-      // Intelligent
-      document.getElementById('pillar-intelligent-target').value = current.routes?.intelligent?.target || '';
-      document.getElementById('pillar-intelligent-title').value = current.routes?.intelligent?.name || 'Intelligent Personal Care Tech';
+      document.getElementById('pillar-intelligent-target').value = current.routes?.intelligent?.target || 'https://vpsmile.com/collections/all';
+      document.getElementById('pillar-intelligent-title').value = current.routes?.intelligent?.name || 'Intelligent Tech';
       document.getElementById('pillar-intelligent-sub').value = current.routes?.intelligent?.subtext || 'Adaptive personal care tech that respects the quiet visual design of the home.';
-      document.getElementById('pillar-intelligent-desc').value = current.routes?.intelligent?.desc || 'Introducing advanced technology to your morning regime. We focus on smart makeup mirrors and high-end beauty tech tools that effortlessly blend into modern sanctuaries, serving as both functional art and adaptive care.';
+      document.getElementById('pillar-intelligent-desc').value = current.routes?.intelligent?.desc || 'Where rigorous German precision engineering meets advanced personal care. This collection brings together vpsmile.com’s flagship ultrasonic vibration toothbrushes, high-tech smart mirrors, and intelligent beauty devices. Acting as seamless architectural decor when static, they empower an efficient, tech-driven routine upon activation.';
     }
 
     function getMergedConfig() {

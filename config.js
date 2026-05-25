@@ -30,13 +30,13 @@ export const AkiHausConfig = {
       channel: "vertical_store",
     },
     rituals: {
-      name: "Washroom Aesthetics & Self-Care",
-      target: "https://rituals.akihaus.co.uk", // Redirection to subscription hub
+      name: "Rituals & Wellness",
+      target: "https://vpsmile.com", // Redirection to subscription hub
       channel: "subscription_hub",
     },
     intelligent: {
-      name: "Intelligent Personal Care Tech",
-      target: "https://intelligent.akihaus.co.uk", // Redirection to vertical tech store
+      name: "Intelligent Tech",
+      target: "https://vpsmile.com/collections/all", // Redirection to vertical tech store
       channel: "vertical_store",
     }
   }
