@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aki Haus | Brand Hub Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            beige: '#F2EEE5',
+            graphite: '#333333',
+            softwhite: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+            logo: ['Montserrat', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #F2EEE5;
+      color: #333333;
+      font-family: 'Inter', sans-serif;
+    }
+    .custom-input {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(51, 51, 51, 0.1);
+      color: #333333;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+    .custom-input:focus {
+      border-color: #333333;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-white selection:text-graphite">
+
+  <!-- Navigation -->
+  <nav class="border-b border-white/20 bg-beige/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-logo tracking-widest text-sm font-semibold text-graphite uppercase">AKI HAUS</a>
+      <span class="text-xs tracking-widest text-graphite/40 uppercase">Brand Hub Management</span>
+      <button id="logout-btn" class="hidden text-xs uppercase tracking-widest border-b border-graphite/30 pb-0.5 hover:border-graphite transition-all">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Login Section -->
+  <div id="login-container" class="flex-grow flex items-center justify-center px-6 py-12">
+    <div class="w-full max-w-md border border-white/40 bg-white/20 p-8 shadow-sm backdrop-blur-sm space-y-6">
+      <div class="text-center space-y-2">
+        <h2 class="font-serif text-2xl text-graphite italic font-light">Admin Access</h2>
+        <p class="text-xs tracking-widest text-graphite/40 uppercase">Aki Haus Control Panel</p>
+      </div>
+
+      <form id="login-form" class="space-y-4">
+        <div class="flex flex-col space-y-1">
+          <label class="text-xs uppercase tracking-widest text-graphite/60">Username</label>
+          <input type="text" id="username-input" class="custom-input font-light" placeholder="admin" required autocomplete="username">
+        </div>
+        <div class="flex flex-col space-y-1">
+          <label class="text-xs uppercase tracking-widest text-graphite/60">Password</label>
+          <input type="password" id="password-input" class="custom-input font-light" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <div id="login-error" class="text-xs text-red-500 font-light hidden">
+          Invalid username or password.
+        </div>
+        <button type="submit" class="w-full bg-graphite text-beige text-xs uppercase tracking-widest py-3 hover:bg-graphite/90 transition-colors font-medium">
+          Authenticate
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div id="dashboard-container" class="flex-grow max-w-7xl mx-auto w-full px-6 py-12 hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Side Menu -->
+      <div class="lg:col-span-3 space-y-2 border-r border-graphite/10 pr-6">
+        <h3 class="text-xs uppercase tracking-widest text-graphite/40 font-semibold mb-4">Dashboard Tabs</h3>
+        <button onclick="switchTab('tab-general')" class="tab-btn w-full text-left py-2 px-3 text-sm font-medium tracking-wide border-l-2 border-graphite text-graphite" id="btn-tab-general">
+          Global Settings
+        </button>
+        <button onclick="switchTab('tab-pillars')" class="tab-btn w-full text-left py-2 px-3 text-sm font-medium tracking-wide border-l-2 border-transparent text-graphite/60 hover:text-graphite transition-all" id="btn-tab-pillars">
+          Ecosystem Pillars
+        </button>
+        <button onclick="switchTab('tab-sync')" class="tab-btn w-full text-left py-2 px-3 text-sm font-medium tracking-wide border-l-2 border-transparent text-graphite/60 hover:text-graphite transition-all" id="btn-tab-sync">
+          Push & Export Code
+        </button>
+      </div>
+
+      <!-- Main Config Forms -->
+      <div class="lg:col-span-9 space-y-8">
+        
+        <!-- Tab 1: General Settings -->
+        <div id="tab-general" class="tab-content space-y-8">
+          <div class="border-b border-graphite/10 pb-4">
+            <h4 class="font-serif text-2xl text-graphite font-light">Global Brand Settings</h4>
+            <p class="text-xs text-graphite/40 tracking-wider">Configure general details for akihaus.co.uk</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col space-y-1">
+              <label class="text-xs uppercase tracking-widest text-graphite/60">Domain Name</label>
+              <input type="text" id="cfg-domain" class="custom-input font-light">
+            </div>
+            <div class="flex flex-col space-y-1">
+              <label class="text-xs uppercase tracking-widest text-graphite/60">Official Contact Email</label>
+              <input type="email" id="cfg-email" class="custom-input font-light">
+            </div>
+            <div class="flex flex-col space-y-1 md:col-span-2">
+              <label class="text-xs uppercase tracking-widest text-graphite/60">Hero Subtitle</label>
+              <input type="text" id="cfg-hero-subtitle" class="custom-input font-light">
+            </div>
+            <div class="flex flex-col space-y-1 md:col-span-2">
+              <label class="text-xs uppercase tracking-widest text-graphite/60">Philosophy Title</label>
+              <input type="text" id="cfg-philosophy-title" class="custom-input font-light">
+            </div>
+            <div class="flex flex-col space-y-1 md:col-span-2">
+              <label class="text-xs uppercase tracking-widest text-graphite/60">Philosophy Description</label>
+              <textarea id="cfg-philosophy-desc" rows="4" class="custom-input font-light resize-none"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Pillars Settings -->
+        <div id="tab-pillars" class="tab-content space-y-10 hidden">
+          <div class="border-b border-graphite/10 pb-4">
+            <h4 class="font-serif text-2xl text-graphite font-light">Ecosystem Pillars</h4>
+            <p class="text-xs text-graphite/40 tracking-wider">Update redirect routes, headings, and descriptions for the 5 categories</p>
+          </div>
+
+          <!-- Inside, Outside, Companions, Rituals, Intelligent forms -->
+          <div class="space-y-8">
+            <!-- 01. Inside -->
+            <div class="border border-white/40 bg-white/20 p-6 space-y-4">
+              <h5 class="font-medium text-sm tracking-widest text-graphite border-b border-graphite/5 pb-2">01 / SPACE & FURNITURE (INSIDE)</h5>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Redirect Target URL</label>
+                  <input type="text" id="pillar-inside-target" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Heading Title</label>
+                  <input type="text" id="pillar-inside-title" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Italic Subtitle</label>
+                  <input type="text" id="pillar-inside-sub" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Description Description</label>
+                  <textarea id="pillar-inside-desc" rows="3" class="custom-input font-light resize-none"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02. Outside -->
+            <div class="border border-white/40 bg-white/20 p-6 space-y-4">
+              <h5 class="font-medium text-sm tracking-widest text-graphite border-b border-graphite/5 pb-2">02 / GARDEN ESSENTIALS & LANDSCAPE (OUTSIDE)</h5>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Redirect Target URL</label>
+                  <input type="text" id="pillar-outside-target" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Heading Title</label>
+                  <input type="text" id="pillar-outside-title" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Italic Subtitle</label>
+                  <input type="text" id="pillar-outside-sub" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Description Description</label>
+                  <textarea id="pillar-outside-desc" rows="3" class="custom-input font-light resize-none"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- 03. Companions -->
+            <div class="border border-white/40 bg-white/20 p-6 space-y-4">
+              <h5 class="font-medium text-sm tracking-widest text-graphite border-b border-graphite/5 pb-2">03 / SEAMLESS PET LIVING (COMPANIONS)</h5>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Redirect Target URL</label>
+                  <input type="text" id="pillar-companions-target" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Heading Title</label>
+                  <input type="text" id="pillar-companions-title" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Italic Subtitle</label>
+                  <input type="text" id="pillar-companions-sub" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Description Description</label>
+                  <textarea id="pillar-companions-desc" rows="3" class="custom-input font-light resize-none"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- 04. Rituals -->
+            <div class="border border-white/40 bg-white/20 p-6 space-y-4">
+              <h5 class="font-medium text-sm tracking-widest text-graphite border-b border-graphite/5 pb-2">04 / WASHROOM AESTHETICS & SELF-CARE (RITUALS)</h5>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Redirect Target URL</label>
+                  <input type="text" id="pillar-rituals-target" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Heading Title</label>
+                  <input type="text" id="pillar-rituals-title" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Italic Subtitle</label>
+                  <input type="text" id="pillar-rituals-sub" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Description Description</label>
+                  <textarea id="pillar-rituals-desc" rows="3" class="custom-input font-light resize-none"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- 05. Intelligent -->
+            <div class="border border-white/40 bg-white/20 p-6 space-y-4">
+              <h5 class="font-medium text-sm tracking-widest text-graphite border-b border-graphite/5 pb-2">05 / INTELLIGENT PERSONAL CARE TECH (INTELLIGENT)</h5>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Redirect Target URL</label>
+                  <input type="text" id="pillar-intelligent-target" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Heading Title</label>
+                  <input type="text" id="pillar-intelligent-title" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Italic Subtitle</label>
+                  <input type="text" id="pillar-intelligent-sub" class="custom-input font-light">
+                </div>
+                <div class="flex flex-col space-y-1 md:col-span-2">
+                  <label class="text-xs uppercase tracking-widest text-graphite/60">Description Description</label>
+                  <textarea id="pillar-intelligent-desc" rows="3" class="custom-input font-light resize-none"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 3: Sync & Export Code -->
+        <div id="tab-sync" class="tab-content space-y-6 hidden">
+          <div class="border-b border-graphite/10 pb-4">
+            <h4 class="font-serif text-2xl text-graphite font-light">Generate & Export Configuration</h4>
+            <p class="text-xs text-graphite/40 tracking-wider">Sync changes to your source code or export files to deploy to GitHub</p>
+          </div>
+
+          <div class="space-y-4 text-sm text-graphite/80 leading-relaxed font-light">
+            <p>
+              Because your site is deployed as a static webpage on GitHub Pages, browser-based changes are temporarily preserved in your current browser cache (LocalStorage).
+            </p>
+            <p>
+              To make your changes <strong>permanent and public for all users</strong>, you must update the config files in your repository. Follow the steps below:
+            </p>
+          </div>
+
+          <div class="border border-white/40 bg-white/20 p-6 space-y-4">
+            <h5 class="text-xs uppercase tracking-widest text-graphite font-semibold">Step 1: Export config.js</h5>
+            <button onclick="downloadConfig()" class="bg-graphite text-beige text-xs uppercase tracking-widest py-3 px-6 hover:bg-graphite/90 transition-colors font-medium">
+              Download config.js
+            </button>
+            <p class="text-xs text-graphite/50 font-light mt-1">Download the generated routing file and place it in the root folder of your project, overwriting the old `config.js`.</p>
+          </div>
+
+          <div class="border border-white/40 bg-white/20 p-6 space-y-4">
+            <h5 class="text-xs uppercase tracking-widest text-graphite font-semibold">Step 2: Commit & Push</h5>
+            <p class="text-xs text-graphite/70 font-mono bg-white/40 p-3 select-all">
+              git add config.js<br>
+              git commit -m "update: refresh vertical routing link targets"<br>
+              git push
+            </p>
+            <p class="text-xs text-graphite/50 font-light">Run these commands in your command terminal inside the project directory to push changes live.</p>
+          </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div id="action-buttons" class="flex gap-4 border-t border-graphite/10 pt-6">
+          <button onclick="saveAllChanges()" class="bg-graphite text-beige text-xs uppercase tracking-widest py-3 px-6 hover:bg-graphite/90 transition-colors font-medium">
+            Save Browser Preview
+          </button>
+          <button onclick="resetDefaults()" class="border border-graphite/20 text-graphite/60 text-xs uppercase tracking-widest py-3 px-6 hover:text-graphite hover:border-graphite transition-all font-medium">
+            Reset to Defaults
+          </button>
+          <span id="save-msg" class="text-xs text-green-600 font-medium self-center ml-2 opacity-0 transition-opacity duration-300">Changes Saved!</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/20 py-8 bg-beige/50 text-center">
+    <p class="text-[10px] tracking-widest text-graphite/40 uppercase">
+      &copy; 2026 Aki Haus. All Rights Reserved. Reserved for akihaus.co.uk.
+    </p>
+  </footer>
+
+  <!-- Admin logic -->
+  <script src="config.js"></script>
+  <script>
+    const DEMO_CONFIG = window.AkiHausConfig || {
+      domain: "akihaus.co.uk",
+      contact: { email: "hello@akihaus.co.uk" },
+      routes: {
+        inside: { name: "Space & Furniture", target: "https://inside.akihaus.co.uk" },
+        outside: { name: "Garden Essentials & Yard Landscape", target: "https://outside.akihaus.co.uk" },
+        companions: { name: "Seamless Pet Living", target: "https://companions.akihaus.co.uk" },
+        rituals: { name: "Washroom Aesthetics & Self-Care", target: "https://rituals.akihaus.co.uk" },
+        intelligent: { name: "Intelligent Personal Care Tech", target: "https://intelligent.akihaus.co.uk" }
+      }
+    };
+
+    // Session-based authentication check
+    document.addEventListener('DOMContentLoaded', () => {
+      const isAuth = sessionStorage.getItem('akihaus_authenticated');
+      if (isAuth === 'true') {
+        showDashboard();
+      }
+    });
+
+    // Login logic
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = document.getElementById('username-input').value;
+      const pass = document.getElementById('password-input').value;
+
+      if (user === 'admin' && pass === '225092@Zc') {
+        sessionStorage.setItem('akihaus_authenticated', 'true');
+        showDashboard();
+      } else {
+        const errorEl = document.getElementById('login-error');
+        errorEl.classList.remove('hidden');
+      }
+    });
+
+    // Logout logic
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      sessionStorage.removeItem('akihaus_authenticated');
+      window.location.reload();
+    });
+
+    function showDashboard() {
+      document.getElementById('login-container').classList.add('hidden');
+      document.getElementById('dashboard-container').classList.remove('hidden');
+      document.getElementById('logout-btn').classList.remove('hidden');
+      loadInputs();
+    }
+
+    // Tab switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(el => {
+        el.classList.remove('border-graphite', 'text-graphite');
+        el.classList.add('border-transparent', 'text-graphite/60');
+      });
+
+      const activeBtnId = 'btn-' + tabId;
+      const activeBtn = document.getElementById(activeBtnId);
+      activeBtn.classList.add('border-graphite', 'text-graphite');
+      activeBtn.classList.remove('border-transparent', 'text-graphite/60');
+    }
+
+    // Load values into UI
+    function loadInputs() {
+      // Load current customized layout data or default values
+      const current = getMergedConfig();
+      
+      document.getElementById('cfg-domain').value = current.domain || '';
+      document.getElementById('cfg-email').value = current.contact?.email || '';
+      document.getElementById('cfg-hero-subtitle').value = current.heroSubtitle || 'The Art of Warm Living';
+      document.getElementById('cfg-philosophy-title').value = current.philosophyTitle || 'The Five Pillars';
+      document.getElementById('cfg-philosophy-desc').value = current.philosophyDesc || 'Aki Haus blends German precision engineering with the warm, serene aesthetics of Japandi design...';
+
+      // Inside
+      document.getElementById('pillar-inside-target').value = current.routes?.inside?.target || '';
+      document.getElementById('pillar-inside-title').value = current.routes?.inside?.name || 'Space & Furniture';
+      document.getElementById('pillar-inside-sub').value = current.routes?.inside?.subtext || 'Engineered modular interiors and architectural systems for refined modern environments.';
+      document.getElementById('pillar-inside-desc').value = current.routes?.inside?.desc || 'Our Inside collection focuses on German assembly logic and modular interior furniture, offering flexible living solutions that seamlessly adapt to your spatial transitions. Integrated with luxury outdoor patio systems, we bridge structural integrity with daily comfort.';
+
+      // Outside
+      document.getElementById('pillar-outside-target').value = current.routes?.outside?.target || '';
+      document.getElementById('pillar-outside-title').value = current.routes?.outside?.name || 'Garden Essentials & Yard Landscape';
+      document.getElementById('pillar-outside-sub').value = current.routes?.outside?.subtext || 'Curated outdoor essentials that harmonise with botanical environments.';
+      document.getElementById('pillar-outside-desc').value = current.routes?.outside?.desc || 'Redefining outdoor sanctuaries with precision gardening tools and minimalist exterior decor. We elevate the landscape into a natural extension of the home, utilizing weather-resistant materials and subtle lighting.';
+
+      // Companions
+      document.getElementById('pillar-companions-target').value = current.routes?.companions?.target || '';
+      document.getElementById('pillar-companions-title').value = current.routes?.companions?.name || 'Seamless Pet Living';
+      document.getElementById('pillar-companions-sub').value = current.routes?.companions?.subtext || 'Minimalist pet care items crafted to integrate beautifully with high-end interiors.';
+      document.getElementById('pillar-companions-desc').value = current.routes?.companions?.desc || 'Bringing high-end pet accessories to the modern home. Our designs are engineered to disappear into the Base Beige interior palette, preventing visual clutter while providing absolute comfort for your companions.';
+
+      // Rituals
+      document.getElementById('pillar-rituals-target').value = current.routes?.rituals?.target || '';
+      document.getElementById('pillar-rituals-title').value = current.routes?.rituals?.name || 'Washroom Aesthetics & Self-Care';
+      document.getElementById('pillar-rituals-sub').value = current.routes?.rituals?.subtext || 'Mindful self-care products designed to cultivate peace in your personal space.';
+      document.getElementById('pillar-rituals-desc').value = current.routes?.rituals?.desc || 'Elevating daily wellness into moments of quiet indulgence. Our focus centers on clean beauty, dental care wellness, and restorative morning and evening routines, curated to deliver premium self-care without sub-brand clutter.';
+
+      // Intelligent
+      document.getElementById('pillar-intelligent-target').value = current.routes?.intelligent?.target || '';
+      document.getElementById('pillar-intelligent-title').value = current.routes?.intelligent?.name || 'Intelligent Personal Care Tech';
+      document.getElementById('pillar-intelligent-sub').value = current.routes?.intelligent?.subtext || 'Adaptive personal care tech that respects the quiet visual design of the home.';
+      document.getElementById('pillar-intelligent-desc').value = current.routes?.intelligent?.desc || 'Introducing advanced technology to your morning regime. We focus on smart makeup mirrors and high-end beauty tech tools that effortlessly blend into modern sanctuaries, serving as both functional art and adaptive care.';
+    }
+
+    function getMergedConfig() {
+      const stored = localStorage.getItem('AkiHausConfig_Full');
+      if (stored) {
+        try { return JSON.parse(stored); } catch(e) {}
+      }
+      // Return fresh copy of DEMO_CONFIG with properties flattened out
+      return JSON.parse(JSON.stringify(DEMO_CONFIG));
+    }
+
+    // Save changes to localStorage
+    function saveAllChanges() {
+      const fullConfig = {
+        domain: document.getElementById('cfg-domain').value,
+        contact: {
+          email: document.getElementById('cfg-email').value
+        },
+        heroSubtitle: document.getElementById('cfg-hero-subtitle').value,
+        philosophyTitle: document.getElementById('cfg-philosophy-title').value,
+        philosophyDesc: document.getElementById('cfg-philosophy-desc').value,
+        routes: {
+          inside: {
+            name: document.getElementById('pillar-inside-title').value,
+            target: document.getElementById('pillar-inside-target').value,
+            subtext: document.getElementById('pillar-inside-sub').value,
+            desc: document.getElementById('pillar-inside-desc').value
+          },
+          outside: {
+            name: document.getElementById('pillar-outside-title').value,
+            target: document.getElementById('pillar-outside-target').value,
+            subtext: document.getElementById('pillar-outside-sub').value,
+            desc: document.getElementById('pillar-outside-desc').value
+          },
+          companions: {
+            name: document.getElementById('pillar-companions-title').value,
+            target: document.getElementById('pillar-companions-target').value,
+            subtext: document.getElementById('pillar-companions-sub').value,
+            desc: document.getElementById('pillar-companions-desc').value
+          },
+          rituals: {
+            name: document.getElementById('pillar-rituals-title').value,
+            target: document.getElementById('pillar-rituals-target').value,
+            subtext: document.getElementById('pillar-rituals-sub').value,
+            desc: document.getElementById('pillar-rituals-desc').value
+          },
+          intelligent: {
+            name: document.getElementById('pillar-intelligent-title').value,
+            target: document.getElementById('pillar-intelligent-target').value,
+            subtext: document.getElementById('pillar-intelligent-sub').value,
+            desc: document.getElementById('pillar-intelligent-desc').value
+          }
+        }
+      };
+
+      // Store complete config
+      localStorage.setItem('AkiHausConfig_Full', JSON.stringify(fullConfig));
+      
+      // Store just routing for index.html compatibility
+      const routeConfig = {
+        domain: fullConfig.domain,
+        contact: fullConfig.contact,
+        routes: {
+          inside: { target: fullConfig.routes.inside.target },
+          outside: { target: fullConfig.routes.outside.target },
+          companions: { target: fullConfig.routes.companions.target },
+          rituals: { target: fullConfig.routes.rituals.target },
+          intelligent: { target: fullConfig.routes.intelligent.target }
+        }
+      };
+      localStorage.setItem('AkiHausConfig', JSON.stringify(routeConfig));
+
+      // Visual feedback
+      const msg = document.getElementById('save-msg');
+      msg.classList.remove('opacity-0');
+      setTimeout(() => {
+        msg.classList.add('opacity-0');
+      }, 2000);
+    }
+
+    // Reset settings
+    function resetDefaults() {
+      if (confirm('Are you sure you want to restore defaults? All local edits will be cleared.')) {
+        localStorage.removeItem('AkiHausConfig_Full');
+        localStorage.removeItem('AkiHausConfig');
+        loadInputs();
+      }
+    }
+
+    // Generate config.js download file
+    function downloadConfig() {
+      saveAllChanges();
+      const current = getMergedConfig();
+      
+      const fileContent = `/**
+ * AkiHaus Global Routing & Configuration Registry
+ * 
+ * Target Domain: ${current.domain}
+ * Description: Gateway routing hub for directing traffic to specialized vertical stores and media channels.
+ */
+
+export const AkiHausConfig = {
+  domain: "${current.domain}",
+  
+  contact: {
+    email: "${current.contact?.email}", // Future-proof official contact email
+  },
+
+  // Isolated redirection routing target configurations
+  routes: {
+    inside: {
+      name: "${current.routes?.inside?.name}",
+      target: "${current.routes?.inside?.target}", // Redirection to vertical sales site
+      channel: "vertical_store",
+    },
+    outside: {
+      name: "${current.routes?.outside?.name}",
+      target: "${current.routes?.outside?.target}", // Redirection to vertical sales site
+      channel: "vertical_store",
+    },
+    companions: {
+      name: "${current.routes?.companions?.name}",
+      target: "${current.routes?.companions?.target}", // Redirection to vertical sales site
+      channel: "vertical_store",
+    },
+    rituals: {
+      name: "${current.routes?.rituals?.name}",
+      target: "${current.routes?.rituals?.target}", // Redirection to subscription hub
+      channel: "subscription_hub",
+    },
+    intelligent: {
+      name: "${current.routes?.intelligent?.name}",
+      target: "${current.routes?.intelligent?.target}", // Redirection to vertical tech store
+      channel: "vertical_store",
+    }
+  }
+};
+
+// Global fallback for standard browser script loading
+if (typeof window !== "undefined") {
+  window.AkiHausConfig = AkiHausConfig;
+}
+`;
+
+      const blob = new Blob([fileContent], { type: 'text/javascript' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'config.js';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
