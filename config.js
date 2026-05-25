@@ -16,7 +16,7 @@ export const AkiHausConfig = {
   routes: {
     inside: {
       name: "Space & Furniture",
-      target: "https://inside.akihaus.co.uk", // Redirection to vertical sales site
+      target: "https://vpsmile.com", // Redirection to vertical sales site
       channel: "vertical_store",
     },
     outside: {
