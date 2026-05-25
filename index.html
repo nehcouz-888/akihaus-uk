@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aki Haus | The Art of Warm Living</title>
+  <meta name="description" content="Aki Haus - A comprehensive approach to modern home wellness through Inside, Outside, Companions, Rituals, and Intelligent spaces.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter, Montserrat & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Configuration for Custom Theme -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            beige: '#F2EEE5',
+            graphite: '#333333',
+            softwhite: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+            logo: ['Montserrat', 'sans-serif'],
+          },
+          letterSpacing: {
+            widest: '0.2em',
+            ultra: '0.4em',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style type="text/css">
+    body {
+      background-color: #F2EEE5;
+      color: #333333;
+      font-family: 'Inter', sans-serif;
+    }
+    .serif-title {
+      font-family: 'Playfair Display', serif;
+    }
+    .logo-font {
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Custom thin scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F2EEE5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #33333330;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #33333360;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden selection:bg-white selection:text-graphite">
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-beige/80 backdrop-blur-md border-b border-white/20 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
+      <a href="#" class="logo-font text-graphite tracking-widest text-sm font-semibold">AKI HAUS</a>
+      <div class="hidden md:flex space-x-8 text-xs tracking-widest uppercase font-medium">
+        <a href="#inside" class="hover:text-graphite/60 transition-colors duration-300">Inside</a>
+        <a href="#outside" class="hover:text-graphite/60 transition-colors duration-300">Outside</a>
+        <a href="#companions" class="hover:text-graphite/60 transition-colors duration-300">Companions</a>
+        <a href="#rituals" class="hover:text-graphite/60 transition-colors duration-300">Rituals</a>
+        <a href="#intelligent" class="hover:text-graphite/60 transition-colors duration-300">Intelligent</a>
+      </div>
+      <a href="mailto:hello@akihaus.co.uk" class="contact-email text-xs tracking-widest border-b border-graphite/30 pb-0.5 hover:border-graphite transition-all duration-300">hello@akihaus.co.uk</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="min-h-screen flex flex-col justify-between items-center pt-28 pb-12 px-6 relative">
+    <div></div> <!-- Spacer -->
+    
+    <div class="text-center space-y-8 select-none">
+      <!-- Minimalist Branch Line-Art SVG -->
+      <div class="mb-6 opacity-90 transition-transform duration-700 hover:scale-105">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 text-white mx-auto">
+          <path d="M50 90 C50 65, 47 40, 52 15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M49 72 C41 68, 33 69, 28 75 C35 78, 43 76, 49 72 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M50 60 C58 55, 66 56, 71 62 C64 66, 56 64, 50 60 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M48 48 C40 43, 32 44, 27 50 C34 53, 42 51, 48 48 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M50 36 C57 31, 65 32, 70 38 C63 42, 55 40, 50 36 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M49 26 C43 21, 36 22, 32 27 C38 30, 45 29, 49 26 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M52 15 C52 8, 48 5, 47 5 C46 9, 48 13, 52 15 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <!-- Wordmark -->
+      <h1 class="logo-font text-4xl md:text-6xl font-light text-graphite tracking-ultra uppercase transition-all duration-500">
+        AKI HAUS
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="text-xs md:text-sm tracking-widest text-graphite/60 uppercase">
+        The Art of Warm Living
+      </p>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <a href="#philosophy" class="group flex flex-col items-center space-y-2 text-graphite/40 hover:text-graphite transition-colors duration-300">
+      <span class="text-[10px] tracking-widest uppercase">Scroll</span>
+      <span class="w-[1px] h-12 bg-graphite/20 group-hover:h-16 transition-all duration-500"></span>
+    </a>
+  </header>
+
+  <!-- Editorial Philosophy Section -->
+  <section id="philosophy" class="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-40 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+    <div class="lg:col-span-4 border-l border-graphite/20 pl-6 lg:pl-8">
+      <span class="text-xs tracking-widest text-graphite/40 uppercase block mb-3">THE ARCHITECTURE</span>
+      <h2 class="serif-title text-3xl md:text-4xl italic text-graphite">The Five Pillars</h2>
+      <p class="text-xs tracking-wider text-graphite/50 mt-1">Curated Spaces for Modern Living</p>
+    </div>
+    <div class="lg:col-span-8 space-y-6">
+      <p class="serif-title text-xl md:text-2xl text-graphite/80 leading-relaxed">
+        “A comprehensive approach to modern home wellness.”
+      </p>
+      <p class="text-sm md:text-base text-graphite/70 leading-relaxed font-light max-w-2xl">
+        Aki Haus blends German precision engineering with the warm, serene aesthetics of Japandi design. From modular interior systems to botanical garden landscapes, human-pet spaces, self-care rituals, and intelligent beauty technologies, we curate a cohesive ecosystem dedicated to modern home wellness.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5 Pillars Sections (Magazine Grid Style) -->
+  <main class="space-y-32 md:space-y-56 pb-32 md:pb-56">
+
+    <!-- 01. Inside Section -->
+    <section id="inside" class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <!-- Text Content -->
+        <div class="lg:col-span-5 order-2 lg:order-1 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs tracking-widest text-graphite/40 font-semibold uppercase">01 / PILLAR</span>
+            <h3 class="serif-title text-3xl md:text-4xl text-graphite font-light">Space & Furniture</h3>
+          </div>
+          <p class="text-sm text-graphite/70 leading-relaxed font-light">
+            Our Inside collection focuses on German assembly logic and modular interior furniture, offering flexible living solutions that seamlessly adapt to your spatial transitions. Integrated with luxury outdoor patio systems, we bridge structural integrity with daily comfort.
+          </p>
+          <p class="text-sm text-graphite/60 leading-relaxed font-light italic">
+            Engineered modular interiors and architectural systems for refined modern environments.
+          </p>
+          <div>
+            <a href="#" data-route="inside" class="explore-btn inline-flex items-center text-xs uppercase tracking-widest font-semibold text-graphite group border-b border-graphite/30 pb-1 hover:border-graphite transition-all duration-300">
+              Explore Inside
+              <span class="ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+            </a>
+          </div>
+        </div>
+        <!-- Image Panel -->
+        <div class="lg:col-span-7 order-1 lg:order-2">
+          <div class="overflow-hidden border border-white/30 bg-white/10 p-2 shadow-sm">
+            <img src="images/inside.jpg" 
+                 alt="Inside Modular Furniture" 
+                 class="w-full aspect-[4/3] object-cover filter contrast-[0.95] saturate-[0.85] transition-transform duration-700 hover:scale-[1.02]">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. Outside Section -->
+    <section id="outside" class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <!-- Image Panel -->
+        <div class="lg:col-span-7">
+          <div class="overflow-hidden border border-white/30 bg-white/10 p-2 shadow-sm">
+            <img src="images/outside.jpg" 
+                 alt="Outside Garden Sanctuary" 
+                 class="w-full aspect-[4/3] object-cover filter contrast-[0.95] saturate-[0.85] transition-transform duration-700 hover:scale-[1.02]">
+          </div>
+        </div>
+        <!-- Text Content -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs tracking-widest text-graphite/40 font-semibold uppercase">02 / PILLAR</span>
+            <h3 class="serif-title text-3xl md:text-4xl text-graphite font-light">Garden Essentials & Yard Landscape</h3>
+          </div>
+          <p class="text-sm text-graphite/70 leading-relaxed font-light">
+            Redefining outdoor sanctuaries with precision gardening tools and minimalist exterior decor. We elevate the landscape into a natural extension of the home, utilizing weather-resistant materials and subtle lighting.
+          </p>
+          <p class="text-sm text-graphite/60 leading-relaxed font-light italic">
+            Curated outdoor essentials that harmonise with botanical environments.
+          </p>
+          <div>
+            <a href="#" data-route="outside" class="explore-btn inline-flex items-center text-xs uppercase tracking-widest font-semibold text-graphite group border-b border-graphite/30 pb-1 hover:border-graphite transition-all duration-300">
+              Explore Outside
+              <span class="ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. Companions Section -->
+    <section id="companions" class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <!-- Text Content -->
+        <div class="lg:col-span-5 order-2 lg:order-1 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs tracking-widest text-graphite/40 font-semibold uppercase">03 / PILLAR</span>
+            <h3 class="serif-title text-3xl md:text-4xl text-graphite font-light">Seamless Pet Living</h3>
+          </div>
+          <p class="text-sm text-graphite/70 leading-relaxed font-light">
+            Bringing high-end pet accessories to the modern home. Our designs are engineered to disappear into the Base Beige interior palette, preventing visual clutter while providing absolute comfort for your companions.
+          </p>
+          <p class="text-sm text-graphite/60 leading-relaxed font-light italic">
+            Minimalist pet care items crafted to integrate beautifully with high-end interiors.
+          </p>
+          <div>
+            <a href="#" data-route="companions" class="explore-btn inline-flex items-center text-xs uppercase tracking-widest font-semibold text-graphite group border-b border-graphite/30 pb-1 hover:border-graphite transition-all duration-300">
+              Explore Companions
+              <span class="ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+            </a>
+          </div>
+        </div>
+        <!-- Image Panel -->
+        <div class="lg:col-span-7 order-1 lg:order-2">
+          <div class="overflow-hidden border border-white/30 bg-white/10 p-2 shadow-sm">
+            <img src="images/companions.jpg" 
+                 alt="Aesthetic Pet Companion" 
+                 class="w-full aspect-[4/3] object-cover filter contrast-[0.95] saturate-[0.85] transition-transform duration-700 hover:scale-[1.02]">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. Rituals Section -->
+    <section id="rituals" class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <!-- Image Panel -->
+        <div class="lg:col-span-7">
+          <div class="overflow-hidden border border-white/30 bg-white/10 p-2 shadow-sm">
+            <img src="images/rituals.jpg" 
+                 alt="Self-care Rituals" 
+                 class="w-full aspect-[4/3] object-cover filter contrast-[0.95] saturate-[0.85] transition-transform duration-700 hover:scale-[1.02]">
+          </div>
+        </div>
+        <!-- Text Content -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs tracking-widest text-graphite/40 font-semibold uppercase">04 / PILLAR</span>
+            <h3 class="serif-title text-3xl md:text-4xl text-graphite font-light">Washroom Aesthetics & Self-Care</h3>
+          </div>
+          <p class="text-sm text-graphite/70 leading-relaxed font-light">
+            Elevating daily wellness into moments of quiet indulgence. Our focus centers on clean beauty, dental care wellness, and restorative morning and evening routines, curated to deliver premium self-care without sub-brand clutter.
+          </p>
+          <p class="text-sm text-graphite/60 leading-relaxed font-light italic">
+            Mindful self-care products designed to cultivate peace in your personal space.
+          </p>
+          <div>
+            <a href="#" data-route="rituals" class="explore-btn inline-flex items-center text-xs uppercase tracking-widest font-semibold text-graphite group border-b border-graphite/30 pb-1 hover:border-graphite transition-all duration-300">
+              Explore Rituals
+              <span class="ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. Intelligent Section -->
+    <section id="intelligent" class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <!-- Text Content -->
+        <div class="lg:col-span-5 order-2 lg:order-1 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs tracking-widest text-graphite/40 font-semibold uppercase">05 / PILLAR</span>
+            <h3 class="serif-title text-3xl md:text-4xl text-graphite font-light">Intelligent Personal Care Tech</h3>
+          </div>
+          <p class="text-sm text-graphite/70 leading-relaxed font-light">
+            Introducing advanced technology to your morning regime. We focus on smart makeup mirrors and high-end beauty tech tools that effortlessly blend into modern sanctuaries, serving as both functional art and adaptive care.
+          </p>
+          <p class="text-sm text-graphite/60 leading-relaxed font-light italic">
+            Adaptive personal care tech that respects the quiet visual design of the home.
+          </p>
+          <div>
+            <a href="#" data-route="intelligent" class="explore-btn inline-flex items-center text-xs uppercase tracking-widest font-semibold text-graphite group border-b border-graphite/30 pb-1 hover:border-graphite transition-all duration-300">
+              Explore Intelligent
+              <span class="ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+            </a>
+          </div>
+        </div>
+        <!-- Image Panel -->
+        <div class="lg:col-span-7 order-1 lg:order-2">
+          <div class="overflow-hidden border border-white/30 bg-white/10 p-2 shadow-sm">
+            <img src="images/intelligent.jpg" 
+                 alt="Intelligent Mirror Tech" 
+                 class="w-full aspect-[4/3] object-cover filter contrast-[0.95] saturate-[0.85] transition-transform duration-700 hover:scale-[1.02]">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="bg-graphite text-beige py-16 md:py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center border-t border-beige/10 pt-12 gap-8">
+      
+      <!-- Brand Logo / Copyright -->
+      <div class="space-y-4">
+        <h4 class="logo-font text-lg tracking-widest uppercase">AKI HAUS</h4>
+        <p class="text-xs text-beige/50 font-light">
+          &copy; 2026 Aki Haus. All Rights Reserved. Reserved for akihaus.co.uk.
+        </p>
+      </div>
+
+      <!-- Quick Contacts -->
+      <div class="space-y-2 text-xs tracking-wider text-right md:text-left">
+        <p class="text-beige/40">Official Inquiry</p>
+        <a href="mailto:hello@akihaus.co.uk" class="contact-email text-sm text-white border-b border-white/30 pb-0.5 hover:border-white transition-all duration-300 block w-fit">
+          hello@akihaus.co.uk
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Routing Script -->
+  <script src="config.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Safely access AkiHausConfig loaded from config.js
+      const config = window.AkiHausConfig || {};
+      
+      // Select all category exploration links
+      const buttons = document.querySelectorAll('.explore-btn');
+      
+      buttons.forEach(btn => {
+        const categoryKey = btn.getAttribute('data-route');
+        if (categoryKey && config.routes && config.routes[categoryKey]) {
+          const routeInfo = config.routes[categoryKey];
+          if (routeInfo.target) {
+            btn.href = routeInfo.target;
+            btn.setAttribute('target', '_blank');
+            btn.setAttribute('rel', 'noopener noreferrer');
+          }
+        }
+      });
+
+      // Update email elements dynamically
+      if (config.contact && config.contact.email) {
+        const email = config.contact.email;
+        const emailElements = document.querySelectorAll('.contact-email');
+        emailElements.forEach(el => {
+          el.href = 'mailto:' + email;
+          el.textContent = email;
+        });
+      }
+      
+      // Auto-correct layout or spacing logic checks (Responsive Guard)
+      const handleResize = () => {
+        const width = window.innerWidth;
+        const navbar = document.querySelector('nav');
+        if (width < 768) {
+          navbar.classList.add('py-3');
+          navbar.classList.remove('py-5');
+        } else {
+          navbar.classList.add('py-5');
+          navbar.classList.remove('py-3');
+        }
+      };
+
+      window.addEventListener('resize', handleResize);
+      handleResize(); // Initial trigger
+    });
+  </script>
+</body>
+</html>
