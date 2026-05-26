@@ -266,35 +266,35 @@
         <!-- Tab 3: Sync & Export Code -->
         <div id="tab-sync" class="tab-content space-y-6 hidden">
           <div class="border-b border-graphite/10 pb-4">
-            <h4 class="font-serif text-2xl text-graphite font-light">Generate & Export Configuration</h4>
-            <p class="text-xs text-graphite/40 tracking-wider">Sync changes to your source code or export files to deploy to GitHub</p>
+            <h4 class="font-serif text-2xl text-graphite font-light">保存与同步配置 (Sync & Deploy)</h4>
+            <p class="text-xs text-graphite/40 tracking-wider">将本地修改同步到云端，部署发布至 GitHub Pages</p>
           </div>
 
           <div class="space-y-4 text-sm text-graphite/80 leading-relaxed font-light">
             <p>
-              Because your site is deployed as a static webpage on GitHub Pages, browser-based changes are temporarily preserved in your current browser cache (LocalStorage).
+              由于本站采用静态页面托管于 <strong>GitHub Pages</strong>，您在后台进行的表单修改默认仅保存在当前浏览器的缓存中（LocalStorage），仅供您本机进行实时预览。
             </p>
             <p>
-              To make your changes <strong>permanent and public for all users</strong>, you must update the config files in your repository. Follow the steps below:
+              若要将修改<strong>永久发布上线，让所有真实访客都能看到</strong>，请严格按照以下步骤重新配置部署：
             </p>
           </div>
 
           <div class="border border-white/40 bg-white/20 p-6 space-y-4">
-            <h5 class="text-xs uppercase tracking-widest text-graphite font-semibold">Step 1: Export config.js</h5>
+            <h5 class="text-xs uppercase tracking-widest text-graphite font-semibold">第一步：导出最新配置文件 (Export config.js)</h5>
             <button onclick="downloadConfig()" class="bg-graphite text-beige text-xs uppercase tracking-widest py-3 px-6 hover:bg-graphite/90 transition-colors font-medium">
-              Download config.js
+              下载最新的 config.js
             </button>
-            <p class="text-xs text-graphite/50 font-light mt-1">Download the generated routing file and place it in the root folder of your project, overwriting the old `config.js`.</p>
+            <p class="text-xs text-graphite/50 font-light mt-1">点击按钮下载生成的路由配置文件，下载后将其放入您的本地电脑项目根目录 `/Users/nehcouz/Antigravty file/akihaus-uk/` 下，覆盖同名的旧文件。</p>
           </div>
 
           <div class="border border-white/40 bg-white/20 p-6 space-y-4">
-            <h5 class="text-xs uppercase tracking-widest text-graphite font-semibold">Step 2: Commit & Push</h5>
+            <h5 class="text-xs uppercase tracking-widest text-graphite font-semibold">第二步：执行 Git 终端推送指令 (Deploy to GitHub)</h5>
             <p class="text-xs text-graphite/70 font-mono bg-white/40 p-3 select-all">
               git add config.js<br>
-              git commit -m "update: refresh vertical routing link targets"<br>
-              git push
+              git commit -m "update: sync config links from admin panel"<br>
+              git push origin main
             </p>
-            <p class="text-xs text-graphite/50 font-light">Run these commands in your command terminal inside the project directory to push changes live.</p>
+            <p class="text-xs text-graphite/50 font-light">在您的 Mac 电脑终端（Terminal）中，进入项目目录，复制并运行上述 3 条命令。代码推送到 GitHub 后，网站将在 1 分钟内自动部署更新发布！</p>
           </div>
         </div>
 

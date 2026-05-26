@@ -403,6 +403,27 @@
         }
       });
 
+      // Toast notification helper
+      function showToast(message) {
+        const existing = document.getElementById('akihaus-toast');
+        if (existing) existing.remove();
+
+        const toast = document.createElement('div');
+        toast.id = 'akihaus-toast';
+        toast.className = 'fixed top-8 left-1/2 -translate-x-1/2 z-50 bg-graphite text-beige text-xs uppercase tracking-widest px-6 py-3 border border-white/20 shadow-lg transition-all duration-500 opacity-0 translate-y-[-10px]';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        requestAnimationFrame(() => {
+          toast.classList.remove('opacity-0', 'translate-y-[-10px]');
+        });
+
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-[-10px]');
+          setTimeout(() => toast.remove(), 500);
+        }, 2500);
+      }
+
       // Update email elements dynamically
       if (config.contact && config.contact.email) {
         const email = config.contact.email;
@@ -410,6 +431,14 @@
         emailElements.forEach(el => {
           el.href = 'mailto:' + email;
           el.textContent = email;
+          
+          el.addEventListener('click', (e) => {
+            navigator.clipboard.writeText(email).then(() => {
+              showToast("Email copied to clipboard");
+            }).catch(err => {
+              console.error("Failed to copy email", err);
+            });
+          });
         });
       }
       

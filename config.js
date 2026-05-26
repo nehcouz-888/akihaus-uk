@@ -16,17 +16,17 @@ export const AkiHausConfig = {
   routes: {
     inside: {
       name: "Space & Furniture",
-      target: "", // Redirection to vertical sales site
+      target: "https://vpsmile.com", // Redirection to vertical sales site
       channel: "vertical_store",
     },
     outside: {
       name: "Garden Essentials & Yard Landscape",
-      target: "", // Redirection to vertical sales site
+      target: "https://vpsmile.com", // Redirection to vertical sales site
       channel: "vertical_store",
     },
     companions: {
       name: "Seamless Pet Living",
-      target: "", // Redirection to vertical sales site
+      target: "https://vpsmile.com", // Redirection to vertical sales site
       channel: "vertical_store",
     },
     rituals: {
@@ -36,7 +36,7 @@ export const AkiHausConfig = {
     },
     intelligent: {
       name: "Intelligent Tech",
-      target: "", // Redirection to vertical tech store
+      target: "https://vpsmile.com/collections/all", // Redirection to vertical tech store
       channel: "vertical_store",
     }
   }
